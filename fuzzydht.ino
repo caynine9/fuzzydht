@@ -104,9 +104,18 @@ void gettemperature() {
       Serial.println(" %");
 
       unsigned long elapsedMillis = currentMillis - lastResultMillis;
+
+      unsigned long elapsedSeconds = elapsedMillis/1000;
+
+      unsigned long seconds = elapsedSeconds % 60;
+      unsigned long minutes = (elapsedSeconds % 3600)/60;
+      unsigned long hours = elapsedSeconds/3600;
+
+      String formattedTime = String(hours) + ":" + String(minutes) + ":" + String(seconds);
+
       Serial.print("Time since last result: ");
-      Serial.print(elapsedMillis);
-      Serial.println(" ms");
+      Serial.print(formattedTime);
+      Serial.println(" (HH:mm:ss)");
 
       lastResultMillis = currentMillis;
         }
